@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Button,
     makeStyles,
@@ -37,21 +37,29 @@ import Whatshot from '@material-ui/icons/Whatshot';
 
 import VideoLibrary from '@material-ui/icons/VideoLibrary'
 import History from '@material-ui/icons/History'
-import { AddCircle } from '@material-ui/icons';
+import AddCircle from '@material-ui/icons/AddCircle';
+import myFoto from './images/foto.jpg'
+
+import AliceInChains from './images/thumb1.jpg'
+import Kaka from "./images/thumb2.png"
+import Muzy from "./images/thumb3.png"
+import Gringa from "./images/thumb4.png"
+import itAint from "./images/thumb5.png"
+import Vini from "./images/thumb6.png"
+import Elon from "./images/thumb7.png"
+import SQL from "./images/thumb8.png"
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: "100vh",
         backgroundColor: theme.palette.background.dark,
     },
     AppBar: {
-
         boxShadow: "none",
         zIndex: theme.zIndex.drawer + 1,
     },
     logo: {
-        height: 25,
+        height: 30,
     },
     drawer: {
         width: 240,
@@ -62,8 +70,8 @@ const useStyles = makeStyles((theme) => ({
         borderRight: "none",
     },
     menuIcon: {
-        paddingRight: theme.spacing(5),
-        paddingLeft: theme.spacing(6),
+        paddingRight: theme.spacing(4),
+        paddingLeft: theme.spacing(5),
     },
     icons: {
         paddingRight: theme.spacing(5)
@@ -80,6 +88,10 @@ const useStyles = makeStyles((theme) => ({
     },
     subheader: {
         textTransform: 'uppercase'
+    },
+    box1: {
+        width: '80%',
+        marginLeft: "15%"
     }
 }));
 
@@ -87,81 +99,80 @@ const videos = [
     {
         id: 1,
         title:
-            'FEED DO USUÁRIO | Criando uma Rede Social com React.js e .NET Core #29',
-        channel: 'Lucas Nhimi',
+            ' Vinícius Jr - FUT MOTIVATION',
+        channel: 'Fut cortes',
         views: '11 mi de visualizações',
         date: 'há 1 semana',
-        avatar: '/images/avatar.jpeg',
-        thumb: '/images/thumb1.png',
+        avatar: myFoto,
+        thumb: Vini,
     },
     {
         id: 2,
         title:
-            'COMO MELHORAR SEU CODIGO JAVASCRIPT (ESLINT + PRETTIER + EDITORCONFIG) | Dicas e Truques #02',
-        channel: 'Lucas Nhimi',
+            "Alice In Chains - Rotten Apple HD - Collegno 2010",
+        channel: ' Alice in Chains',
         views: '957 mil visualizações',
         date: 'há 1 semana',
-        avatar: '/images/avatar.jpeg',
-        thumb: '/images/thumb2.png',
+        avatar: myFoto,
+        thumb: AliceInChains,
     },
     {
         id: 3,
-        title:
-            'CONTEXT API NO EDITOR DE POST | Criando uma Rede Social com React.js e .NET Core #27',
-        channel: 'Lucas Nhimi',
+        title: "DERROTA NA COPA DE 2010",
+        channel: 'Cortes do Futebol',
         views: '106 mil visualizações',
         date: 'há 1 semana',
-        avatar: '/images/avatar.jpeg',
-        thumb: '/images/thumb3.png',
+        avatar: myFoto,
+        thumb: Kaka,
     },
     {
         id: 4,
         title:
-            'CONTEXT API NO EDITOR DE POST | Criando uma Rede Social com React.js e .NET Core #27',
-        channel: 'Lucas Nhimi',
+            'a DICA INFÁLIVEL para GERENCIAR O SEU TEMPO (com Paulo Muzy)',
+        channel: 'Cortes do MHM',
         views: '5,6 mi de visualizações',
         date: 'há 1 semana',
-        avatar: '/images/avatar.jpeg',
-        thumb: '/images/thumb4.png',
+        avatar: myFoto,
+        thumb: Muzy,
     },
     {
         id: 5,
         title:
-            'EDITOR DE POST COM MARKDOWN 2 | Criando uma Rede Social com React.js e .NET Core #26',
-        channel: 'Lucas Nhimi',
+            '5 coisas que amo no Brasil',
+        channel: 'Aquela Gringa StacyAngy',
         views: '2,2 mi de visualizações',
         date: 'há 1 semana',
-        avatar: '/images/avatar.jpeg',
-        thumb: '/images/thumb5.png',
+        avatar: myFoto,
+        thumb: Gringa,
     },
     {
         id: 6,
-        title: 'COMO MIGRAR PARA REACT HOOKS | Dicas e Truques #01',
-        channel: 'Lucas Nhimi',
+        title: 'It Aint like that',
+        channel: 'Alice in Chains',
         views: '233 mil visualizações',
         date: 'há 1 semana',
-        avatar: '/images/avatar.jpeg',
-        thumb: '/images/thumb6.png',
+        avatar: myFoto,
+        thumb: itAint,
     },
     {
         id: 7,
         title:
-            'PRÉ-REQUISITOS | Criando uma Rede Social com React.js e .NET Core #01',
-        channel: 'Lucas Nhimi',
+            'Podcast com Elon Musk',
+        channel: 'Cortes PodCast',
         views: '118 mil visualizações',
         date: 'há 1 semana',
-        avatar: '/images/avatar.jpeg',
-        thumb: '/images/thumb7.png',
+        avatar: myFoto,
+        thumb: Elon,
     },
     {
         id: 8,
         title:
-            'GIT E GITHUB | Criando uma Rede Social com React.js e .NET Core #04',
-        channel: 'Lucas Nhimi',
+            'Fiz um servidor de "SQL"?? | Entendendo Banco de Dados',
+        channel: 'Fabio Akita',
         views: '1,9 mi de visualizações',
         date: 'há 1 semana',
-        avatar: '/images/avatar.jpeg',
-        thumb: '/images/thumb8.png',
+        avatar: myFoto,
+        thumb: SQL,
     },
 ];
 
@@ -169,6 +180,9 @@ function Home({ darkMode, setDarkMode }) {
     const classes = useStyles();
     const theme = useTheme();
 
+    useEffect(() => {
+        console.log("HOME -> ", darkMode)
+    }, [darkMode])
     return (
         <div className={classes.root}>
             <AppBar color="inherit" className={classes.AppBar}>
@@ -181,15 +195,19 @@ function Home({ darkMode, setDarkMode }) {
                         <MenuIcon />
                     </IconButton>
                     <img src={theme.palette.type === 'dark'
-                        ? { logoWhite }
-                        : { logoBlack }}
+                        ? logoWhite
+                        : logoBlack}
                         alt='logo'
                         className={classes.logo}
                     />
                     <div className={classes.grow} />
                     <Switch
                         value={darkMode}
-                        onChange={() => setDarkMode(!darkMode)}
+                        onChange={() => setDarkMode(prevState => {
+                            console.log(prevState);
+                            console.log(!darkMode)
+                            return !darkMode
+                        })}
                         className={classes.icons}
                     />
                     <IconButton className={classes.icons}>
@@ -212,10 +230,10 @@ function Home({ darkMode, setDarkMode }) {
             <Box display="flex">
                 <Hidden mdDown>
                     <Drawer
-                        className={classes.drawerContainer}
+                        className={classes.drawer}
                         variant="permanent"
                         classes={{
-                            paper: classes.drawerContainer,
+                            paper: classes.drawerPaper,
                         }}
                     >
                         <Toolbar />
@@ -266,8 +284,8 @@ function Home({ darkMode, setDarkMode }) {
                                 </ListItem>
                             </List>
                             <Divider />
-                            <Box p={7} >
-                                <Typography variant="body2">
+                            <Box p={7}>
+                                <Typography variant="body1">
                                     Faça login para curtir vídeos, comentar e se inscrever.
                                 </Typography>
                                 <Box mt={2}>
@@ -370,7 +388,7 @@ function Home({ darkMode, setDarkMode }) {
                                         classes={{
                                             primary: classes.ListItemText,
                                         }}
-                                        primary={'VIdeos 360'} />
+                                        primary={'Videos 360'} />
                                 </ListItem>
                             </List>
                             <Divider />
@@ -388,18 +406,18 @@ function Home({ darkMode, setDarkMode }) {
                         </div>
                     </Drawer >
                 </Hidden>
-                <Box p={4}>
+                <Box padding={8} classes={{ root: !darkMode ? classes.box1 : "" }} >
                     <Toolbar />
                     <Typography
                         variant='h5'
                         color='textPrimary'
-                        style={{ fontWeight: 800 }}
+                        style={{ fontWeight: 600 }}
                     >
                         Recomendados
                     </Typography>
 
 
-                    <Grid container spacing={4}>
+                    <Grid container spacing={1} >
                         {
                             videos.map((item, index) => (
                                 <Grid item lg={3} md={4} sm={6} xs={12}>
